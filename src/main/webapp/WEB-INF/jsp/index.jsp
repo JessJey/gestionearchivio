@@ -50,10 +50,9 @@
 			    
 			     <div class="p-5 mb-4 bg-light rounded-3">
 				      <div class="container-fluid py-5">
-				        <h1 class="display-5 fw-bold">Benvenuto a Poker Online</h1>
-				        <p class="col-md-8 fs-4">Cerca tavoli di gioco </p>
-				        <p class="col-md-8 fs-4">Il tuo credito residuo: ${userInfo.creditoAccumulato } </p>
-				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/gioca/search">Vai a Ricerca</a>
+				        <h1 class="display-5 fw-bold">Benvenuto a Gestione Archivio</h1>
+				        <p class="col-md-8 fs-4">Cerca tra i fascicoli </p>
+				        <a class="btn btn-primary btn-lg" href="${pageContext.request.contextPath}/fascicolo/search">Ricerca Fascicolo</a>
 				      </div>
 			    </div>
 			    
