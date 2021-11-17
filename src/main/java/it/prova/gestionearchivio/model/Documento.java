@@ -37,8 +37,20 @@ public class Documento {
 
 	public Documento() {
 	}
-
 	
+	public Documento(Long id, String codice, String descrizione, Date dataCreazione, Date dataUltimaModifica,
+			boolean riservato, Fascicolo fascicolo) {
+		super();
+		this.id = id;
+		this.codice = codice;
+		this.descrizione = descrizione;
+		this.dataCreazione = dataCreazione;
+		this.dataUltimaModifica = dataUltimaModifica;
+		this.riservato = riservato;
+		this.fascicolo = fascicolo;
+	}
+
+
 	public Documento(Long id, String codice, String descrizione, Date dataCreazione, Date dataUltimaModifica,
 			boolean riservato) {
 		super();
@@ -49,7 +61,6 @@ public class Documento {
 		this.dataUltimaModifica = dataUltimaModifica;
 		this.riservato = riservato;
 	}
-
 
 	public Documento(String codice, String descrizione, Date dataCreazione, Date dataUltimaModifica,
 			boolean riservato) {

@@ -1,10 +1,7 @@
 package it.prova.gestionearchivio.dto;
 
-import java.util.Arrays;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
@@ -15,9 +12,9 @@ public class DocumentoDTO {
 
 	private Long id;
 
-	// @NotBlank(message = "{codice.notblank}")
+	@NotBlank(message = "{codice.notblank}")
 	private String codice;
-	// @NotBlank(message = "{descrizione.notblank}")
+	@NotBlank(message = "{descrizione.notblank}")
 	private String descrizione;
 
 	private Date dataCreazione;
@@ -26,6 +23,8 @@ public class DocumentoDTO {
 
 	private boolean riservato;
 
+	private FascicoloDTO fascicoloProprietario;
+	
 	public DocumentoDTO() {
 	}
 
@@ -39,8 +38,10 @@ public class DocumentoDTO {
 		this.riservato = riservato;
 	}
 
-	public DocumentoDTO(Long id, String codice, String descrizione, Date dataCreazione, Date dataUltimaModifica,
-			boolean riservato) {
+	
+
+	public DocumentoDTO(Long id, String codice,String descrizione, Date dataCreazione,
+			Date dataUltimaModifica, boolean riservato, FascicoloDTO fascicoloProprietario) {
 		super();
 		this.id = id;
 		this.codice = codice;
@@ -48,6 +49,7 @@ public class DocumentoDTO {
 		this.dataCreazione = dataCreazione;
 		this.dataUltimaModifica = dataUltimaModifica;
 		this.riservato = riservato;
+		this.fascicoloProprietario = fascicoloProprietario;
 	}
 
 	public Long getId() {
@@ -98,15 +100,23 @@ public class DocumentoDTO {
 		this.riservato = riservato;
 	}
 	
+	public FascicoloDTO getFascicoloProprietario() {
+		return fascicoloProprietario;
+	}
+
+	public void setFascicoloProprietario(FascicoloDTO fascicoloProprietario) {
+		this.fascicoloProprietario = fascicoloProprietario;
+	}
+
 	public Documento buildDocumentoModel() {
-		Documento result = new Documento(this.id, this.codice, this.descrizione, this.dataCreazione, this.dataUltimaModifica, this.riservato);
+		Documento result = new Documento(this.id, this.codice, this.descrizione, this.dataCreazione, this.dataUltimaModifica, this.riservato, this.fascicoloProprietario.buildFascicoloModel());
 		return result;
 	}
 
 	public static DocumentoDTO buildDocumentoDTOFromModel(Documento documentoModel) {
 		return new DocumentoDTO(documentoModel.getId(), documentoModel.getCodice(), documentoModel.getDescrizione(),
 				documentoModel.getDataCreazione(), documentoModel.getDataUltimaModifica(),
-				documentoModel.isRiservato());
+				documentoModel.isRiservato(),FascicoloDTO.buildFascicoloDTOFromModel(documentoModel.getFascicolo()));
 	}
 	
 	public static List<DocumentoDTO> createDocumentoDTOListFromModelList(List<Documento> modelListInput) {
