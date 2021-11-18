@@ -4,6 +4,7 @@ package it.prova.gestionearchivio.web.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -91,6 +92,27 @@ public class DocumentoController {
 		List<Documento> documenti = documentoService.findByExample(documentoExample);
 		model.addAttribute("documenti_list_attribute", DocumentoDTO.createDocumentoDTOListFromModelList(documenti));
 		return "documento/list";
+	}
+	
+	@GetMapping("/edit/{idDocumento}")
+	public String edit(@PathVariable(required = true) Long idDocumento, Model model) {
+		Documento documentoModel = documentoService.caricaSingoloElemento(idDocumento);
+		model.addAttribute("update_documento_attr", DocumentoDTO.buildDocumentoDTOFromModel(documentoModel));
+		return "documento/edit";
+	}
+
+	@PostMapping("/update")
+	public String update(@Valid @ModelAttribute("update_documento_attr") DocumentoDTO documentoDTO,
+			BindingResult result, RedirectAttributes redirectAttrs) {
+
+		if (result.hasErrors()) {
+			return "documento/edit";
+		}
+		documentoDTO.setDataUltimaModifica(new Date());
+		documentoService.aggiorna(documentoDTO.buildDocumentoModel());
+
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/documento";
 	}
 	
 	

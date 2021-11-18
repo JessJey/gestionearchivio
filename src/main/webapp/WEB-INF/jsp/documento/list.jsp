@@ -42,8 +42,8 @@
 				        <h5>Lista dei risultati</h5> 
 				    </div>
 				    <div class='card-body'>
-				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/tavolo/insert">Add New</a>
-				    	<a href="${pageContext.request.contextPath }/tavolo/gestione" class='btn btn-outline-secondary' >
+				    	<a class="btn btn-primary " href="${pageContext.request.contextPath}/documento/insert">Add New</a>
+				    	<a href="${pageContext.request.contextPath }/documento/search" class='btn btn-outline-secondary' >
 				            <i class='fa fa-chevron-left'></i> Torna alla Ricerca
 				        </a>
 				    
@@ -66,10 +66,17 @@
 											<td>${documentoItem.descrizione }</td>
 											<td><fmt:formatDate type = "date" value = "${documentoItem.dataCreazione }" /></td>
 											<td><fmt:formatDate type = "date" value = "${documentoItem.dataUltimaModifica }" /></td>
-											<td>${documentoItem.riservato }</td>
+											<c:choose>
+											    <c:when test="${documentoItem.riservato }">
+											<td>Riservato</td>
+												</c:when>
+												  <c:when test="${!documentoItem.riservato }">
+											<td>Pubblico</td>
+												</c:when>
+											</c:choose>
 											 <td>
 												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/documento/show/${documentoItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/tavolo/edit/${documentoItem.id }">Edit</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/documento/edit/${documentoItem.id }">Edit</a>
 												<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/tavolo/delete/${documentoItem.id }">Delete</a>
 											</td> 
 										</tr>

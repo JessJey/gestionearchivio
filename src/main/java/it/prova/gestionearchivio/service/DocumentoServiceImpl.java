@@ -45,4 +45,9 @@ public class DocumentoServiceImpl implements DocumentoService {
 		return (List<Documento>) repository.findAll();
 	}
 
+	@Override
+	public void aggiorna(Documento documentoInstance) {
+		repository.save(documentoInstance);
+	}
+
 }

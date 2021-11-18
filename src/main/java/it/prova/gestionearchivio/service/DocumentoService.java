@@ -4,9 +4,10 @@ import java.util.List;
 
 import it.prova.gestionearchivio.dto.DocumentoDTO;
 import it.prova.gestionearchivio.model.Documento;
-import it.prova.gestionearchivio.model.Fascicolo;
 
 public interface DocumentoService {
+	
+	public void aggiorna(Documento documentoInstance);
 	
 	public List<Documento> listAllDocumenti();
 	
