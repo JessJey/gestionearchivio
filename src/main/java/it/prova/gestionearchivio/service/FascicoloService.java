@@ -13,4 +13,6 @@ public interface FascicoloService {
 	public List<Fascicolo> listAllFascicoli();
 	
 	public List<Fascicolo> findByExample(FascicoloDTO example);
+
+	public Fascicolo caricaSingoloElemento(Long idFascicolo);
 }
