@@ -16,13 +16,11 @@ public class FascicoloServiceImpl implements FascicoloService {
 	@Autowired
 	private FascicoloRepository fascicoloRepository;
 
-	
 	@Transactional
 	public void inserisciNuovo(Fascicolo fascicoloIstance) {
 		fascicoloRepository.save(fascicoloIstance);
 	}
-	
-	
+
 	@Override
 	@Transactional
 	public List<Fascicolo> findByExample(FascicoloDTO example) {
@@ -47,4 +45,7 @@ public class FascicoloServiceImpl implements FascicoloService {
 		fascicoloRepository.save(fascicoloInstance);
 	}
 
+	public Fascicolo caricaSingoloElemento(Long idFascicolo) {
+		return fascicoloRepository.findById(idFascicolo).orElse(null);
+	}
 }

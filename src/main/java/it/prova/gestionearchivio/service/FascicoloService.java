@@ -17,4 +17,6 @@ public interface FascicoloService {
 	public Fascicolo caricaSingoloFascicolo(Long id);
 	
 	public void aggiorna(Fascicolo fascicoloInstance);
+
+	public Fascicolo caricaSingoloElemento(Long idFascicolo);
 }

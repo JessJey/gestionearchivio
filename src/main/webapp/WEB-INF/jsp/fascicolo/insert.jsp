@@ -48,7 +48,7 @@
 							<h6 class="card-title">I campi con <span class="text-danger">*</span> sono obbligatori</h6>
 		
 		
-							<form:form modelAttribute="insert_fascicolo_attr" method="post" action="save" novalidate="novalidate" class="row g-3">
+							<form:form modelAttribute="insert_fascicolo_attr" method="post" action="/fascicolo/save" novalidate="novalidate" class="row g-3">
 					
 							
 								<div class="col-md-6">

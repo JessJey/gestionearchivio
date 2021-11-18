@@ -43,7 +43,7 @@ public class FascicoloController {
 	}
 
 	@PostMapping("/save")
-	public String saveFascicoloa(@Valid @ModelAttribute("insert_fascicolo_attr") FascicoloDTO fascicoloDTO, BindingResult result,
+	public String saveFascicolo(@Valid @ModelAttribute("insert_fascicolo_attr") FascicoloDTO fascicoloDTO, BindingResult result,
 			RedirectAttributes redirectAttrs) {
 
 		if (result.hasErrors()) {
@@ -57,7 +57,7 @@ public class FascicoloController {
 	}
 	
 	@GetMapping
-	public ModelAndView listAllTavoli() {
+	public ModelAndView listAllFascicoli() {
 		ModelAndView mv = new ModelAndView();
 		List<Fascicolo> tavoli = fascicoloService.listAllFascicoli();
 		mv.addObject("fascicolo_list_attribute", FascicoloDTO.createFascicoloDTOListFromModelList(tavoli));
@@ -97,4 +97,10 @@ public class FascicoloController {
 		return "redirect:/fascicolo";
 	}
 	
+	@GetMapping("/show/{idFascicolo}")
+	public String showFascicolo(@PathVariable(required = true) Long idFascicolo, Model model) {
+		model.addAttribute("show_fascicolo_attr", fascicoloService.caricaSingoloElemento(idFascicolo));
+		return "fascicolo/show";
+	}
+
 }
