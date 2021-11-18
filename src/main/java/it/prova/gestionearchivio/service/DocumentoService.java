@@ -7,5 +7,7 @@ public interface DocumentoService {
 	public Documento caricaSingoloElemento(Long id);
 	
 	public Documento caricaSingoloElementoEager(Long id);
+	
+	public void inserisciNuovo(Documento documentoInstance);
 
 }

@@ -35,4 +35,14 @@ public class FascicoloServiceImpl implements FascicoloService {
 		return (List<Fascicolo>) fascicoloRepository.findAll();
 	}
 
+	@Override
+	public List<Fascicolo> cercaByCodiceEDescrizioneLike(String term) {
+		return repository.findByCodiceIgnoreCaseContainingOrDescrizioneIgnoreCaseContainingOrderByCodiceAsc(term, term);
+	}
+
+	@Override
+	public Fascicolo caricaSingoloElemento(Long id) {
+		return repository.findById(id).orElse(null);
+	}
+
 }
