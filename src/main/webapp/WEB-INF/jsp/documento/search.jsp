@@ -58,10 +58,10 @@
 									<input type="number" class="form-control" name="esperienzaMin" id="esperienzaMin" placeholder="Inserire esperienza minima" >
 								</div>
 								<div class="col-md-6">
-										<label for="fascicoloSearchInput" class="form-label">Creatore tavolo:</label>
+										<label for="fascicoloSearchInput" class="form-label">Fascicolo:</label>
 										<input class="form-control " type="text" id="fascicoloSearchInput"
 												name="fascicoloInput" >
-										<input type="hidden" name="fascicolo.id" id="fascicoloId" >
+										<input type="hidden" name="fascicoloProprietario.id" id="fascicoloId" >
 								</div>
 									
 								<div class="col-12">
@@ -76,7 +76,7 @@
 								$("#fascicoloSearchInput").autocomplete({
 									 source: function(request, response) {
 									        $.ajax({
-									            url: "${pageContext.request.contextPath }/documento/searchUtentiAjax",
+									            url: "${pageContext.request.contextPath }/fascicolo/searchFascicoliAjax",
 									            datatype: "json",
 									            data: {
 									                term: request.term,   

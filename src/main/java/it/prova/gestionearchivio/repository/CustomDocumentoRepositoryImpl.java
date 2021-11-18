@@ -42,10 +42,10 @@ public class CustomDocumentoRepositoryImpl implements CustomDocumentoRepository{
 			whereClauses.add("d.dataUltimaModifica >= :dataUltimaModifica ");
 			paramaterMap.put("dataUltimaModifica", example.getDataUltimaModifica());
 		}
-//		if (StringUtils.isNotBlank(example.getFascicoloProprietario().getCodice())) {
-//			whereClauses.add(" f.codice =:codice ");
-//			paramaterMap.put("codice", example.getFascicoloProprietario().getClass());
-//		}
+		if (example.getFascicoloProprietario().getId() != null) {
+			whereClauses.add(" f.id =:id ");
+			paramaterMap.put("id", example.getFascicoloProprietario().getId());
+		}
 		
 		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));

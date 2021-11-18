@@ -27,11 +27,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import it.prova.gestionearchivio.dto.FascicoloDTO;
 import it.prova.gestionearchivio.service.DocumentoService;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.servlet.ModelAndView;
 
 import it.prova.gestionearchivio.model.Fascicolo;
-import it.prova.gestionearchivio.service.DocumentoService;
 import it.prova.gestionearchivio.service.FascicoloService;
 
 @Controller
@@ -67,8 +64,8 @@ public class FascicoloController {
 	@GetMapping
 	public ModelAndView listAllFascicoli() {
 		ModelAndView mv = new ModelAndView();
-		List<Fascicolo> tavoli = fascicoloService.listAllFascicoli();
-		mv.addObject("fascicolo_list_attribute", FascicoloDTO.createFascicoloDTOListFromModelList(tavoli));
+		List<Fascicolo> fascicoli = fascicoloService.listAllFascicoli();
+		mv.addObject("fascicolo_list_attribute", FascicoloDTO.createFascicoloDTOListFromModelList(fascicoli));
 		mv.setViewName("fascicolo/list");
 		return mv;
 	}

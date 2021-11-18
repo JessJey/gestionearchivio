@@ -31,8 +31,7 @@ public class FascicoloDTO {
 	}
 
 	
-	public FascicoloDTO(Long id, @NotBlank(message = "{codice.notblank}") String codice,
-			@NotBlank(message = "{descrizione.notblank}") String descrizione, Date dataCreazione, Date dataChiusura,
+	public FascicoloDTO(Long id,String codice, String descrizione, Date dataCreazione, Date dataChiusura,
 			Set<Documento> documenti) {
 		super();
 		this.id = id;

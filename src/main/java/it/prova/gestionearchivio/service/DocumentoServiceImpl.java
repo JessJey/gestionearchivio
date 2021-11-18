@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import it.prova.gestionearchivio.dto.DocumentoDTO;
 import it.prova.gestionearchivio.model.Documento;
+import it.prova.gestionearchivio.model.Fascicolo;
 import it.prova.gestionearchivio.repository.DocumentoRepository;
 
 @Service
@@ -37,6 +38,11 @@ public class DocumentoServiceImpl implements DocumentoService {
 	@Transactional
 	public void inserisciNuovo(Documento documentoInstance) {
 		repository.save(documentoInstance);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Documento> listAllDocumenti() {
+		return (List<Documento>) repository.findAll();
 	}
 
 }
