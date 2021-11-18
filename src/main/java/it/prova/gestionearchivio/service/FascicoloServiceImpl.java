@@ -14,15 +14,13 @@ import it.prova.gestionearchivio.repository.FascicoloRepository;
 public class FascicoloServiceImpl implements FascicoloService {
 
 	@Autowired
-	private FascicoloRepository repository;
+	private FascicoloRepository fascicoloRepository;
 
-	
 	@Transactional
 	public void inserisciNuovo(Fascicolo fascicoloIstance) {
-		repository.save(fascicoloIstance);
+		fascicoloRepository.save(fascicoloIstance);
 	}
-	private FascicoloRepository fascicoloRepository;
-	
+
 	@Override
 	@Transactional
 	public List<Fascicolo> findByExample(FascicoloDTO example) {
@@ -37,12 +35,23 @@ public class FascicoloServiceImpl implements FascicoloService {
 
 	@Override
 	public List<Fascicolo> cercaByCodiceEDescrizioneLike(String term) {
-		return repository.findByCodiceIgnoreCaseContainingOrDescrizioneIgnoreCaseContainingOrderByCodiceAsc(term, term);
+		return fascicoloRepository.findByCodiceIgnoreCaseContainingOrDescrizioneIgnoreCaseContainingOrderByCodiceAsc(term, term);
 	}
 
 	@Override
 	public Fascicolo caricaSingoloElemento(Long id) {
-		return repository.findById(id).orElse(null);
+		return fascicoloRepository.findById(id).orElse(null);
+	}
+
+	@Transactional(readOnly = true)
+	public Fascicolo caricaSingoloFascicolo(Long id) {
+		return fascicoloRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public void aggiorna(Fascicolo fascicoloInstance) {
+		fascicoloRepository.save(fascicoloInstance);
 	}
 
 }

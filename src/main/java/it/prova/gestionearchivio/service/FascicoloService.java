@@ -17,4 +17,9 @@ public interface FascicoloService {
 	public List<Fascicolo> cercaByCodiceEDescrizioneLike(String term);
 
 	public Fascicolo caricaSingoloElemento(Long id);
+	
+	public Fascicolo caricaSingoloFascicolo(Long id);
+	
+	public void aggiorna(Fascicolo fascicoloInstance);
+
 }
