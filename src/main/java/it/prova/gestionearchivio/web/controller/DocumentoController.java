@@ -17,11 +17,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.prova.gestionearchivio.dto.DocumentoDTO;
 import it.prova.gestionearchivio.dto.FascicoloDTO;
 import it.prova.gestionearchivio.model.Documento;
+import it.prova.gestionearchivio.model.Fascicolo;
 import it.prova.gestionearchivio.service.DocumentoService;
 import it.prova.gestionearchivio.service.FascicoloService;
 
@@ -33,6 +35,15 @@ public class DocumentoController {
 	private DocumentoService documentoService;
 	@Autowired
 	private FascicoloService fascicoloService;
+	
+	@GetMapping
+	public ModelAndView listAllDocumenti() {
+		ModelAndView mv = new ModelAndView();
+		List<Documento> documenti = documentoService.listAllDocumenti();
+		mv.addObject("documenti_list_attribute", DocumentoDTO.createDocumentoDTOListFromModelList(documenti));
+		mv.setViewName("documento/list");
+		return mv;
+	}
 	
 	@GetMapping("/show/{idDocumento}")
 	public String showFilm(@PathVariable(required = true) Long idDocumento, Model model) {

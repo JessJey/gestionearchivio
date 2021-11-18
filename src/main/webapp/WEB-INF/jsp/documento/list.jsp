@@ -62,8 +62,8 @@
 				                <tbody>
 				                	<c:forEach items="${documenti_list_attribute }" var="documentoItem">
 										<tr>
-											<td>${documenti_list_attribute.codice }</td>
-											<td>${documenti_list_attribute.descrizione }</td>
+											<td>${documentoItem.codice }</td>
+											<td>${documentoItem.descrizione }</td>
 											<td><fmt:formatDate type = "date" value = "${documentoItem.dataCreazione }" /></td>
 											<td><fmt:formatDate type = "date" value = "${documentoItem.dataUltimaModifica }" /></td>
 											<td>${documentoItem.riservato }</td>
