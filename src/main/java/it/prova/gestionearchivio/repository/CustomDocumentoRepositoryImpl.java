@@ -26,11 +26,11 @@ public class CustomDocumentoRepositoryImpl implements CustomDocumentoRepository{
 
 		StringBuilder queryBuilder = new StringBuilder("select d from Documento d join d.fascicolo f where d.id = d.id ");
 
-		if (StringUtils.isNotEmpty(example.getCodice())) {
+		if (StringUtils.isNotBlank(example.getCodice())) {
 			whereClauses.add(" d.nome  like :nome ");
 			paramaterMap.put("nome", "%" + example.getCodice() + "%");
 		}
-		if (StringUtils.isNotEmpty(example.getDescrizione())) {
+		if (StringUtils.isNotBlank(example.getDescrizione())) {
 			whereClauses.add(" d.cognome like :cognome ");
 			paramaterMap.put("cognome", "%" + example.getDescrizione() + "%");
 		}
@@ -42,10 +42,10 @@ public class CustomDocumentoRepositoryImpl implements CustomDocumentoRepository{
 			whereClauses.add("d.dataUltimaModifica >= :dataUltimaModifica ");
 			paramaterMap.put("dataUltimaModifica", example.getDataUltimaModifica());
 		}
-		if (StringUtils.isNotEmpty(example.getFascicoloProprietario().getCodice())) {
-			whereClauses.add(" f.codice =:codice ");
-			paramaterMap.put("codice", example.getFascicoloProprietario().getClass());
-		}
+//		if (StringUtils.isNotBlank(example.getFascicoloProprietario().getCodice())) {
+//			whereClauses.add(" f.codice =:codice ");
+//			paramaterMap.put("codice", example.getFascicoloProprietario().getClass());
+//		}
 		
 		queryBuilder.append(!whereClauses.isEmpty()?" and ":"");
 		queryBuilder.append(StringUtils.join(whereClauses, " and "));

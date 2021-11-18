@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import it.prova.gestionearchivio.model.Documento;
 
-public interface DocumentoRepository extends CrudRepository<Documento, Long> {
+public interface DocumentoRepository extends CrudRepository<Documento, Long>, CustomDocumentoRepository{
 	@Query("from Documento d join fetch d.fascicolo where d.id = ?1")
 	Documento findSingleDocumentoEager(Long id);
 }

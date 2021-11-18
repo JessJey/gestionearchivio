@@ -51,24 +51,26 @@
 				            <table class='table table-striped ' >
 				                <thead>
 				                    <tr>
-			                         	<th>Denominazione</th>
-			                         	<th>Data creazione</th>
-				                        <th>Esperienza minima</th>
-				                        <th>Cifra minima</th>
+			                         	<th>codice</th>
+			                         	<th>descrizione</th>
+				                        <th>dataCreazione</th>
+				                        <th>dataUltimaModifica</th>
+				                        <th>riservato</th>
 				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
-				                	<c:forEach items="${tavoli_list_attribute }" var="tavoloItem">
+				                	<c:forEach items="${documenti_list_attribute }" var="documentoItem">
 										<tr>
-											<td>${tavoloItem.denominazione }</td>
-											<td><fmt:formatDate type = "date" value = "${tavoloItem.dataCreazione }" /></td>
-											<td>${tavoloItem.esperienzaMin }</td>
-											<td>${tavoloItem.cifraMin }</td>
+											<td>${documenti_list_attribute.codice }</td>
+											<td>${documenti_list_attribute.descrizione }</td>
+											<td><fmt:formatDate type = "date" value = "${documentoItem.dataCreazione }" /></td>
+											<td><fmt:formatDate type = "date" value = "${documentoItem.dataUltimaModifica }" /></td>
+											<td>${documentoItem.riservato }</td>
 											 <td>
-												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/tavolo/show/${tavoloItem.id }">Visualizza</a>
-												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/tavolo/edit/${tavoloItem.id }">Edit</a>
-												<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/tavolo/delete/${tavoloItem.id }">Delete</a>
+												<a class="btn  btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/documento/show/${documentoItem.id }">Visualizza</a>
+												<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="${pageContext.request.contextPath}/tavolo/edit/${documentoItem.id }">Edit</a>
+												<a class="btn btn-outline-danger btn-sm" href="${pageContext.request.contextPath}/tavolo/delete/${documentoItem.id }">Delete</a>
 											</td> 
 										</tr>
 									</c:forEach>
