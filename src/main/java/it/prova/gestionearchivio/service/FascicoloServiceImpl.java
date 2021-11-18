@@ -34,6 +34,10 @@ public class FascicoloServiceImpl implements FascicoloService {
 	}
 
 	@Override
+	public List<Fascicolo> cercaByCodiceEDescrizioneLike(String term) {
+		return fascicoloRepository.findByCodiceIgnoreCaseContainingOrDescrizioneIgnoreCaseContainingOrderByCodiceAsc(term, term);
+	}
+
 	@Transactional(readOnly = true)
 	public Fascicolo caricaSingoloFascicolo(Long id) {
 		return fascicoloRepository.findById(id).orElse(null);
@@ -54,5 +58,4 @@ public class FascicoloServiceImpl implements FascicoloService {
 	public void rimuoviId(Long idFascicolo) {
 		fascicoloRepository.deleteById(idFascicolo);
 	}
-
 }

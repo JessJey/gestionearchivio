@@ -11,6 +11,9 @@ public interface DocumentoService {
 	
 	public Documento caricaSingoloElementoEager(Long id);
 	
+	public void inserisciNuovo(Documento documentoInstance);
+	
 	public List<Documento> findByExample(DocumentoDTO example);
 
+	
 }

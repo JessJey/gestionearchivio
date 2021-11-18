@@ -16,11 +16,13 @@ public class DocumentoServiceImpl implements DocumentoService {
 	@Autowired
 	private DocumentoRepository repository;
 
+	@Override
 	@Transactional(readOnly = true)
 	public Documento caricaSingoloElemento(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 
+	@Override
 	@Transactional(readOnly = true)
 	public Documento caricaSingoloElementoEager(Long id) {
 		return repository.findSingleDocumentoEager(id);
@@ -29,6 +31,12 @@ public class DocumentoServiceImpl implements DocumentoService {
 	@Transactional(readOnly = true)
 	public List<Documento> findByExample(DocumentoDTO example) {
 		return repository.findByExample(example);
+	}
+
+	@Override
+	@Transactional
+	public void inserisciNuovo(Documento documentoInstance) {
+		repository.save(documentoInstance);
 	}
 
 }
