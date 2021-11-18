@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,12 +21,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.prova.gestionearchivio.dto.FascicoloDTO;
 import it.prova.gestionearchivio.service.DocumentoService;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import it.prova.gestionearchivio.dto.FascicoloDTO;
 import it.prova.gestionearchivio.model.Fascicolo;
 import it.prova.gestionearchivio.service.FascicoloService;
 
@@ -56,7 +53,7 @@ public class FascicoloController {
 		fascicoloService.inserisciNuovo(fascicoloDTO.buildFascicoloModel());
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
-		return "redirect:/fascicolo/list";
+		return "redirect:/fascicolo";
 	}
 	
 	@GetMapping
@@ -78,6 +75,26 @@ public class FascicoloController {
 		List<Fascicolo> fascicoli = fascicoloService.findByExample(fascicoloExample);
 		model.addAttribute("fascicolo_list_attribute", fascicoli);
 		return "fascicolo/list";
+	}
+	
+	@GetMapping("/edit/{idFascicolo}")
+	public String edit(@PathVariable(required = true) Long idFascicolo, Model model) {
+		Fascicolo fascicoloModel = fascicoloService.caricaSingoloFascicolo(idFascicolo);
+		model.addAttribute("update_fascicolo_attr", FascicoloDTO.buildFascicoloDTOFromModel(fascicoloModel));
+		return "fascicolo/edit";
+	}
+
+	@PostMapping("/update")
+	public String update(@Valid @ModelAttribute("update_fascicolo_attr") FascicoloDTO fascicoloDTO,
+			BindingResult result, RedirectAttributes redirectAttrs) {
+
+		if (result.hasErrors()) {
+			return "fascicolo/edit";
+		}
+		fascicoloService.aggiorna(fascicoloDTO.buildFascicoloModel());
+
+		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+		return "redirect:/fascicolo";
 	}
 	
 }

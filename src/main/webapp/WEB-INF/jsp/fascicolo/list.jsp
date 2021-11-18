@@ -47,12 +47,14 @@
 			                         	<th>Descrizione</th>
 				                        <th>Data Creazione</th>
 				                        <th>Data Chiusura</th>
+				                        <th>Azioni</th>
 				                    </tr>
 				                </thead>
 				                <tbody>
 				                	<c:forEach items="${fascicolo_list_attribute }" var="fascicoloItem">
 										<tr>
 											<td>${fascicoloItem.codice }</td>
+											<td>${fascicoloItem.descrizione }</td>
 											<td><fmt:formatDate type = "date" value = "${fascicoloItem.dataCreazione }" /></td>
 											<td><fmt:formatDate type = "date" value = "${fascicoloItem.dataChiusura }" /></td>
 											<td>
@@ -64,6 +66,9 @@
 									</c:forEach>
 				                </tbody>
 				            </table>
+				            <a href="${pageContext.request.contextPath }/fascicolo/search" class='btn btn-outline-secondary' style='width:80px'>
+								            <i class='fa fa-chevron-left'></i> Back
+								        </a>
 				        </div>
 				   
 					<!-- end card-body -->			   

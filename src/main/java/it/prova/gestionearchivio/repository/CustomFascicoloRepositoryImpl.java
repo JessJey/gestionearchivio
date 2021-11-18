@@ -26,11 +26,11 @@ public class CustomFascicoloRepositoryImpl implements CustomFascicoloRepository 
 
 		StringBuilder queryBuilder = new StringBuilder("select r from Fascicolo r where r.id = r.id ");
 
-		if (StringUtils.isNotEmpty(example.getCodice())) {
+		if (StringUtils.isNotBlank(example.getCodice())) {
 			whereClauses.add(" r.codice  like :codice ");
 			paramaterMap.put("codice", "%" + example.getCodice() + "%");
 		}
-		if (StringUtils.isNotEmpty(example.getDescrizione())) {
+		if (StringUtils.isNotBlank(example.getDescrizione())) {
 			whereClauses.add(" r.descrizione like :descrizione ");
 			paramaterMap.put("descrizione", "%" + example.getDescrizione() + "%");
 		}

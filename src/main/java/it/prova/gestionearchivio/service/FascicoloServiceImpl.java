@@ -14,14 +14,14 @@ import it.prova.gestionearchivio.repository.FascicoloRepository;
 public class FascicoloServiceImpl implements FascicoloService {
 
 	@Autowired
-	private FascicoloRepository repository;
+	private FascicoloRepository fascicoloRepository;
 
 	
 	@Transactional
 	public void inserisciNuovo(Fascicolo fascicoloIstance) {
-		repository.save(fascicoloIstance);
+		fascicoloRepository.save(fascicoloIstance);
 	}
-	private FascicoloRepository fascicoloRepository;
+	
 	
 	@Override
 	@Transactional
@@ -33,6 +33,18 @@ public class FascicoloServiceImpl implements FascicoloService {
 	@Transactional(readOnly = true)
 	public List<Fascicolo> listAllFascicoli() {
 		return (List<Fascicolo>) fascicoloRepository.findAll();
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Fascicolo caricaSingoloFascicolo(Long id) {
+		return fascicoloRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public void aggiorna(Fascicolo fascicoloInstance) {
+		fascicoloRepository.save(fascicoloInstance);
 	}
 
 }
