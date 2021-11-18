@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.prova.gestionearchivio.dto.FascicoloDTO;
@@ -101,6 +102,26 @@ public class FascicoloController {
 	public String showFascicolo(@PathVariable(required = true) Long idFascicolo, Model model) {
 		model.addAttribute("show_fascicolo_attr", fascicoloService.caricaSingoloElemento(idFascicolo));
 		return "fascicolo/show";
+	}
+	
+	@GetMapping("/remove/{idFascicolo}")
+	public String remove(@PathVariable(required = true) Long idFascicolo, Model model) {
+		model.addAttribute("remove_fascicolo_attr", fascicoloService.caricaSingoloElemento(idFascicolo));
+		return "fascicolo/delete";
+	}
+
+	@PostMapping("/delete")
+	public String rimozione(@RequestParam Long idFascicolo, RedirectAttributes redirectAttrs) {
+
+		if (fascicoloService.caricaSingoloElemento(idFascicolo).getDocumenti().size() == 0) {
+			fascicoloService.rimuoviId(idFascicolo);
+			redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
+			return "redirect:/fascicolo";
+		} else {
+			redirectAttrs.addFlashAttribute("errorMessage",
+					"Non è possibile eliminare il fascicolo perché ha dei film associati!");
+			return "redirect:/fascicolo";
+		}
 	}
 
 }

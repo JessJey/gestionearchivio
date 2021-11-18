@@ -48,4 +48,11 @@ public class FascicoloServiceImpl implements FascicoloService {
 	public Fascicolo caricaSingoloElemento(Long idFascicolo) {
 		return fascicoloRepository.findById(idFascicolo).orElse(null);
 	}
+
+	@Override
+	@Transactional
+	public void rimuoviId(Long idFascicolo) {
+		fascicoloRepository.deleteById(idFascicolo);
+	}
+
 }
