@@ -64,7 +64,7 @@
 					    	</dl>
 					    	
 					    	<dl class="row">
-						    	<dt class="col-sm-3 text-right">Giocatori Al Tavolo:</dt>
+						    	<dt class="col-sm-3 text-right">Documenti nel fascicolo:</dt>
 						    	<dd class="col-sm-9">
 						    	<c:if test="${empty remove_fascicolo_attr.documenti }">
 						    		<td>Non ci sono documenti nel fascicolo<br></td>

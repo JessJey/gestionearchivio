@@ -116,6 +116,8 @@ public class FascicoloController {
 		if (result.hasErrors()) {
 			return "fascicolo/edit";
 		}
+		Date data = fascicoloService.caricaSingoloFascicolo(fascicoloDTO.getId()).getDataCreazione();
+		fascicoloDTO.setDataCreazione(data);
 		fascicoloService.aggiorna(fascicoloDTO.buildFascicoloModel());
 
 		redirectAttrs.addFlashAttribute("successMessage", "Operazione eseguita correttamente");
@@ -143,7 +145,7 @@ public class FascicoloController {
 			return "redirect:/fascicolo";
 		} else {
 			redirectAttrs.addFlashAttribute("errorMessage",
-					"Non è possibile eliminare il fascicolo perché ha dei film associati!");
+					"Non è possibile eliminare il fascicolo perché ha dei documenti associati!");
 			return "redirect:/fascicolo";
 		}
 	}
