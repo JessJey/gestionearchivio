@@ -70,7 +70,7 @@
 						    		<td>Non ci sono documenti nel fascicolo<br></td>
 						    	</c:if>
 						    	<c:forEach items="${remove_fascicolo_attr.documenti }" var="documentiItem">
-										<td>${"documentiItem.descrizione"}<br></td>
+										<td>${documentiItem.descrizione}<br></td>
 								</c:forEach>
 								
 								</dd>
